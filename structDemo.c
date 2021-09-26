@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-///
+/// 常规
 struct StudentInfo{
     char            name[32];
     char            sex[16];
