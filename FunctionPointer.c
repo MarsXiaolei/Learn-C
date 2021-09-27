@@ -3,6 +3,7 @@
  * 参考资料：
  * [0] 《C和指针》
  * [1] https://blog.csdn.net/miao19920101/article/details/75648491
+ * [2] https://blog.csdn.net/weixin_47921628/article/details/117688224
  ******************************************************************/
 #include <stdio.h>
 #include <string.h>
@@ -60,9 +61,15 @@ void procFunc(const char *cmd, int a, int b)
     printf("cmd = %s    result = %d\n",cmd, result);
 }
 
+void procFunc_2(int (*CallbackFunc)(int a, int b), int a, int b)
+{
+    int result = CallbackFunc(a, b);
+    printf("a = %d b = %d result = %d\n",a, b, result);
+}
+
 int main()
 {
-    /// 函数指针使用
+    ///[0x01] 函数指针使用
     CallbackFunc callbackFunc = add;
     printf("%d\n",callbackFunc(1,3));
 
@@ -75,7 +82,12 @@ int main()
     callbackFunc = divide;
     printf("%d\n",callbackFunc(1,3));
 
-    /// 回调函数使用
+    printf("\n");
+    ///[0x02] 回调函数使用
+    procFunc_2(multiply, 5, 8);
+
+    printf("\n");
+    ///[0x03] 转移表使用
     procFunc(ADD_CMD_STRING, 10, 20);
     procFunc(SUBTRACT_CMD_STRING, 10, 20);
     procFunc(MULTIPLY_CMD_STRING, 10, 20);
